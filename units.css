@@ -1,0 +1,378 @@
+/* Importing Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@300;400;500&display=swap');
+
+/* Root Variables for Consistent Styling */
+:root {
+    /* Color Palette */
+    --primary-color: #2c3e50;        /* Dark Blue for Navbar and Headings */
+    --secondary-color: #1abc9c;      /* Teal for Highlights and Buttons */
+    --accent-color: #ecf0f1;         /* Light Grey for Text and Backgrounds */
+    --hover-color: #34495e;          /* Darker Shade for Hover Effects */
+    --text-color: #333333;           /* Dark Text Color */
+    --background-color: #f4f4f4;     /* Light Background */
+    --light-bg: #ffffff;             /* White Background for Content */
+    
+    /* Font Families */
+    --font-primary: 'Montserrat', sans-serif; /* Primary Font for Headings */
+    --font-secondary: 'Roboto', sans-serif;    /* Secondary Font for Body */
+    
+    /* Other Variables */
+    --transition-speed: 0.3s;        /* Consistent Transition Speed */
+    --border-radius: 8px;            /* Standard Border Radius */
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-secondary);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+main {
+    padding: 20px;
+}
+
+/* Portfolio Section */
+.portfolio-section {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.portfolio-section h1 {
+    font-family: var(--font-primary);
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.portfolio-item {
+    background: var(--light-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.portfolio-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 2px solid var(--secondary-color);
+}
+
+.portfolio-item h3 {
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 20px;
+}
+
+.portfolio-item p {
+    font-size: 1rem;
+    color: #555555;
+    margin: 0 20px 20px 20px;
+    flex-grow: 1;
+}
+
+.view-btn {
+    display: inline-block;
+    margin: 0 20px 20px 20px;
+    padding: 10px 20px;
+    background-color: var(--secondary-color);
+    color: #ffffff;
+    border-radius: var(--border-radius);
+    text-align: center;
+    transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+
+.view-btn:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-2px);
+}
+
+/* Navbar Styles */
+.Navbar {
+    background-color: var(--primary-color);
+    padding: 15px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    animation: slideDown 0.5s ease-out forwards;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Hamburger Menu Icon */
+.hamburger {
+    display: none;
+    font-size: 1.8rem;
+    color: var(--accent-color);
+    cursor: pointer;
+    transition: color var(--transition-speed) ease-in-out;
+}
+
+.hamburger:hover {
+    color: var(--hover-color);
+}
+
+/* Navigation Menu */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    animation: fadeIn 1s ease-in forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.nav-menu li {
+    position: relative;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease-in-out;
+    border-radius: 4px;
+}
+
+.nav-menu li a {
+    color: var(--accent-color);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color var(--transition-speed) ease-in-out;
+}
+
+.nav-menu li:hover {
+    background-color: var(--hover-color);
+}
+
+.nav-menu li:hover a {
+    color: #ffffff;
+}
+
+/* Dropdown Menu */
+.nav-menu li a.dropbtn {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--hover-color);
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 4px;
+    top: 100%;
+    left: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+
+.dropdown-content a {
+    color: var(--accent-color);
+    padding: 6px 8px;
+    display: block;
+    font-size: 0.95rem;
+    transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--secondary-color);
+    color: #ffffff;
+    transform: scale(1.02);
+}
+
+.nav-menu li.dropdown:hover .dropdown-content {
+    display: block;
+    animation: dropdownFadeIn var(--transition-speed) forwards;
+}
+
+@keyframes dropdownFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Active Unit Styling */
+.Unit1 {
+    background-color: var(--secondary-color);
+    color: #ffffff;
+    border-radius: 4px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(26, 188, 156, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(26, 188, 156, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(26, 188, 156, 0);
+    }
+}
+
+/* Reflection Menu Item Styling */
+.nav-menu li:last-child {
+    animation: fadeIn 1s ease-in forwards;
+    opacity: 0;
+}
+
+/* Hamburger Menu Active State */
+.hamburger.active {
+    color: var(--secondary-color);
+}
+
+.nav-menu.active {
+    left: 0;
+}
+
+/* Main Content Animation */
+@keyframes fadeInContent {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        height: 100vh;
+        width: 250px;
+        background-color: var(--primary-color);
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 60px;
+        transition: left var(--transition-speed) ease-in-out;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-menu li {
+        width: 100%;
+        text-align: left;
+        padding: 15px 20px;
+        border-bottom: 1px solid #34495e;
+    }
+
+    .nav-menu li a.dropbtn {
+        width: 100%;
+    }
+
+    .dropdown-content {
+        position: static;
+        transform: translateY(0);
+        opacity: 1;
+        display: none;
+        background-color: var(--hover-color);
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .nav-menu li.dropdown.active .dropdown-content {
+        display: block;
+    }
+
+    .nav-menu li.dropdown .dropdown-content a {
+        padding-left: 40px;
+    }
+
+    /* Hide dropdown on hover for mobile */
+    .nav-menu li.dropdown:hover .dropdown-content {
+        display: none;
+    }
+
+    /* Adjust Content Padding for Mobile */
+    main {
+        padding: 15px;
+    }
+
+    .portfolio-section h1 {
+        font-size: 2rem;
+    }
+
+    /* Portfolio Grid Adjustments for Mobile */
+    .portfolio-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .portfolio-item h3 {
+        font-size: 1.25rem;
+    }
+
+    .portfolio-item p {
+        font-size: 0.95rem;
+    }
+
+    .view-btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}
