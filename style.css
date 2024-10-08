@@ -1,21 +1,71 @@
-/* General Styles */
-body {
-    font-family: 'Arial', sans-serif;
+/* Importing Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@300;400;500&display=swap');
+
+/* Root Variables for Consistent Styling */
+:root {
+    /* Color Palette */
+    --primary-color: #2c3e50;        /* Dark Blue for Navbar and Headings */
+    --secondary-color: #1abc9c;      /* Teal for Highlights and Buttons */
+    --accent-color: #ecf0f1;         /* Light Grey for Text and Backgrounds */
+    --hover-color: #34495e;          /* Darker Shade for Hover Effects */
+    --text-color: #333333;           /* Dark Text Color */
+    --background-color: #f4f4f4;     /* Light Background */
+    --light-bg: #ffffff;             /* White Background for Content */
+    --overlay-color: rgba(0, 0, 0, 0.5); /* Semi-transparent Overlay */
+    
+    /* Font Families */
+    --font-primary: 'Montserrat', sans-serif; /* Primary Font for Headings */
+    --font-secondary: 'Roboto', sans-serif;    /* Secondary Font for Body */
+    
+    /* Other Variables */
+    --transition-speed: 0.3s;        /* Consistent Transition Speed */
+    --border-radius: 8px;            /* Standard Border Radius */
+}
+
+/* Global Styles */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+}
+
+body {
+    font-family: var(--font-secondary);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
     overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+}
+
+/* Smooth Scroll Behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+main {
+    padding: 20px;
 }
 
 /* Navbar Styles */
 .Navbar {
-    background-color: #2c3e50;
-    padding: 10px 0;
+    background-color: var(--primary-color);
+    padding: 15px 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     animation: slideDown 0.5s ease-out forwards;
 }
 
@@ -30,73 +80,95 @@ body {
     }
 }
 
-.Navbar ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    
-    justify-content: left;
-    animation: fadeIn 1s ease-in forwards;
-    opacity: 0; /* Start hidden for fade-in */
-}
-
-.Navbar ul li {
-    position: relative;
-    padding: 15px 20px;
+/* Hamburger Menu Icon */
+.hamburger {
+    display: none;
+    font-size: 1.8rem;
+    color: var(--accent-color);
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    color: white;
-   
+    transition: color var(--transition-speed) ease-in-out;
 }
 
-.Navbar ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
+.hamburger:hover {
+    color: var(--hover-color);
+}
+
+/* Navigation Menu */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    animation: fadeIn 1s ease-in forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.nav-menu li {
+    position: relative;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease-in-out;
+    border-radius: 4px;
+}
+
+.nav-menu li a {
+    color: var(--accent-color);
+    font-family: var(--font-primary);
+    font-size: 1rem;
     font-weight: 500;
-    transition: color 0.3s ease;
+    transition: color var(--transition-speed) ease-in-out;
 }
 
-.Navbar ul li:hover {
-    background-color: #34495e;
-    color: white;
+.nav-menu li:hover {
+    background-color: var(--hover-color);
 }
 
-.Navbar ul li a.dropbtn {
+.nav-menu li:hover a {
+    color: #ffffff;
+}
+
+/* Dropdown Menu */
+.nav-menu li a.dropbtn {
     display: inline-block;
 }
 
-/* Dropdown Styles */
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #34495e;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    background-color: var(--hover-color);
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
+    border-radius: 4px;
+    top: 100%;
+    left: 0;
     opacity: 0;
     transform: translateY(-10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
 }
 
 .dropdown-content a {
-    color: #ecf0f1;
-    padding: 12px 16px;
-    text-decoration: none;
+    color: var(--accent-color);
+    padding: 8px 16px;
     display: block;
-    font-size: 14px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-size: 0.95rem;
+    transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
 }
 
 .dropdown-content a:hover {
-    background-color: #1abc9c;
-    transform: scale(1.05);
+    background-color: var(--secondary-color);
+    color: #ffffff;
+    transform: scale(1.02);
 }
 
-.Navbar ul li.dropdown:hover .dropdown-content {
+.nav-menu li.dropdown:hover .dropdown-content {
     display: block;
-    animation: dropdownFadeIn 0.3s forwards;
+    animation: dropdownFadeIn var(--transition-speed) forwards;
 }
 
 @keyframes dropdownFadeIn {
@@ -108,29 +180,28 @@ body {
 
 /* Active Unit Styling */
 .Unit1 {
-    background-color: #16a085;
-    color: white;
+    background-color: var(--secondary-color);
+    color: #ffffff;
     border-radius: 4px;
     animation: pulse 1.5s infinite;
 }
 
 @keyframes pulse {
     0% {
-        box-shadow: 0 0 0 0 rgba(22, 160, 133, 0.7);
+        box-shadow: 0 0 0 0 rgba(26, 188, 156, 0.7);
     }
     70% {
-        box-shadow: 0 0 0 10px rgba(22, 160, 133, 0);
+        box-shadow: 0 0 0 10px rgba(26, 188, 156, 0);
     }
     100% {
-        box-shadow: 0 0 0 0 rgba(22, 160, 133, 0);
+        box-shadow: 0 0 0 0 rgba(26, 188, 156, 0);
     }
 }
 
-/* Reflection Styles */
-.Navbar ul li:last-child {
-    /* margin-left: auto; */
-    animation: fadeInRight 1s ease-in forwards;
-    opacity: 0; /* Start hidden for animation */
+/* Reflection Menu Item Styling */
+.nav-menu li:last-child {
+    animation: fadeIn 1s ease-in forwards;
+    opacity: 0;
 }
 
 @keyframes fadeInRight {
@@ -144,14 +215,95 @@ body {
     }
 }
 
-/* Main Content Animation */
-body > :not(.Navbar) {
-    opacity: 0;
-    animation: fadeInContent 1s ease-in forwards;
-    animation-delay: 0.5s;
+/* Hamburger Menu Active State */
+.hamburger.active {
+    color: var(--secondary-color);
 }
 
+.nav-menu.active {
+    left: 0;
+}
+
+/* Portfolio Main Styles */
+.portfolio-main {
+    position: relative;
+    height: auto; /* Allow height to adjust based on content */
+    background-image: url('images/Background.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--accent-color);
+    padding: 60px 20px; /* Add padding to ensure content is well spaced */
+}
+
+/* Overlay Style */
+.portfolio-main .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay-color);
+    z-index: 1;
+}
+
+/* Content Styles */
+.portfolio-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    width: 90%; /* Responsive width */
+    padding: 20px;
+}
+
+.portfolio-content h1 {
+    font-family: var(--font-primary);
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* H5 Styling */
+.portfolio-main h5 {
+    
+   font-size: 32px;                        /* Larger font size for better readability */
+   text-transform: uppercase;              /* Keep text in uppercase */
+   letter-spacing: 3px;                   /* Increased letter spacing for a more spacious look */
+   line-height: 1.4;                      /* Improved line height for readability */
+                     
+   padding-left: 10px;              /* Padding adjusted */
+   margin: 20px auto;  
+    
+   max-width: 1500px;   
+   text-align:justify;
+   background: rgba(255, 255, 255, 0.85); /* Slightly opaque white background */
+   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+   color: #0f1b27;                        /* Dark text color */
+   border-radius: 10px;                   /* More rounded corners */
+   font-family: 'Montserrat', sans-serif;  /* Clean, modern font */
+   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
+
+
+}
+
+/* Hover Effect for H5 */
+.portfolio-main h5:hover {
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* Animations */
 @keyframes fadeInContent {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
     to {
         opacity: 1;
     }
@@ -159,39 +311,40 @@ body > :not(.Navbar) {
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
-    .Navbar ul {
-        flex-direction: column;
-        align-items: center;
-        animation: none; /* Disable fade-in for mobile */
-        opacity: 1;
-    }
-
-    .Navbar ul li {
-        text-align: center;
-        padding: 10px;
-    }
-
-    .dropdown-content {
-        min-width: 100%;
-        position: static;
-        transform: translateY(0);
-        opacity: 1;
-        box-shadow: none;
-    }
-
-    .dropdown-content a {
-        padding: 10px 0;
-    }
-
-    .Navbar ul li.dropdown:hover .dropdown-content {
+    .hamburger {
         display: block;
-        animation: none;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        height: 100vh;
+        width: 80%;
+        background-color: var(--primary-color);
+        flex-direction: column;
+        padding-top: 60px; /* Spacing for mobile */
+        transition: left var(--transition-speed) ease-in-out;
+    }
+
+    .nav-menu li {
+        padding: 15px 20px;
+        width: 100%; /* Full width for menu items */
+    }
+
+    .portfolio-content h1 {
+        font-size: 2rem; /* Adjust heading size for mobile */
+    }
+
+    .portfolio-main h5 {
+        font-size: 1.2rem; /* Smaller font size for mobile */
+        padding: 15px; /* Reduced padding */
+        margin-top: 10px; /* Space between h1 and h5 */
     }
 }
 
-/* Keyframe Animations Definitions */
-@keyframes fadeIn {
-    to {
-        opacity: 1;
+@media (max-width: 480px) {
+    .portfolio-content h1 {
+        font-size: 1.8rem; /* Further reduced size */
     }
 }
