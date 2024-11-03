@@ -272,7 +272,7 @@ main {
 .portfolio-main p {
     
    font-size: 20px;                        /* Larger font size for better readability */
-   text-transform: uppercase;              /* Keep text in uppercase */
+                 /* Keep text in uppercase */
    letter-spacing: 3px;                   /* Increased letter spacing for a more spacious look */
    line-height: 1.4;                      /* Improved line height for readability */
                      
